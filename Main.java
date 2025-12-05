@@ -1,4 +1,3 @@
-# Winter-Project-group-A-
 import java.util.Scanner;
 import java.util.Random;
 
