@@ -7,7 +7,7 @@ public class ClashRoyalePets {
         Scanner scanner = new Scanner(System.in);
         Random random = new Random();
 
-        String[] pets = {"Dart Goblin", "Hog Rider", "Beserker", "Evo P.E.K.K.A"};
+        String[] pets = {"Dart Goblin 50% ", "Hog Rider 35% ", "Beserker 14%", "Evo P.E.K.K.A 1%"};
         int[] probabilities = {50, 35, 14, 1};
 
         int rerolls = 3;

@@ -6,8 +6,9 @@ public class main {
         Scanner scanner = new Scanner(System.in);
         Random random = new Random();
 
-        String[] pets = {"DartGoblin", "HogRider", "Beserker"};
-        int[] probabilities = {50, 35, 15}; // Probabilities for each pet
+        // Updated pets and probabilities to include Pekka
+        String[] pets = {"Dart Goblin 50%", "HogRider 35%", "Beserker 14%", "Pekka 1%"};
+        int[] probabilities = {50, 35, 14, 1}; // Probabilities for each pet
         int rerolls = 3;
         String chosenPet = "";
 
@@ -50,14 +51,17 @@ public class main {
         // Assign the chosen pet to the game
         Character character;
         switch (chosenPet) {
-            case "DartGoblin":
+            case "Dart Goblin 50%":
                 character = new DartGoblin("Sneaky Goblin");
                 break;
-            case "HogRider":
+            case "HogRider 35%":
                 character = new HogRider("Fearless Rider");
                 break;
-            case "Beserker":
+            case "Beserker 14%":
                 character = new Beserker("Raging Warrior");
+                break;
+            case "Pekka 1%":
+                character = new pekka("Mighty Pekka");
                 break;
             default:
                 System.out.println("Error: Invalid pet selection.");
@@ -79,6 +83,7 @@ public class main {
             System.out.print("Enter your choice: ");
 
             int choice = scanner.nextInt();
+            scanner.nextLine(); // Consume the leftover newline character
 
             switch (choice) {
                 case 1:
@@ -86,7 +91,7 @@ public class main {
                     break;
                 case 2:
                     character.move();
-                    break;
+                    break; 
                 case 3:
                     character.rest();
                     break;
