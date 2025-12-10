@@ -30,9 +30,9 @@ public class HogRider implements Character {
     public void attack() {
         delay();
         System.out.println(name + " charges forward with his big hog, dealing " + damage + " damage!");
-        System.out.println("HogRider got hurt from the charge and loses some health...");
+        System.out.println("HogRider got hurt from the charge and loses 30 health...");
         delay();
-        this.health -= 10;
+        this.health -= 30;
         this.happiness += 10;
         checkHappiness();
     }

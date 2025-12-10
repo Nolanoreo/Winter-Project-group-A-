@@ -30,7 +30,7 @@ public class DartGoblin implements Character {
         System.out.println(name + " blows a dart causing " + damage + " damage to the target dummy!");
         System.out.println("the attack took some energy...");
         delay();
-        this.health -= 5;
+        this.health -= 15;
         this.happiness += 5;
         checkHappiness();
     }

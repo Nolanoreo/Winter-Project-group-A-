@@ -2,78 +2,60 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class main {
+
     public static void main(String[] args) {
+
         Scanner scanner = new Scanner(System.in);
         Random random = new Random();
 
-        // Updated pets and probabilities to include Pekka
         String[] pets = {"Dart Goblin 50%", "HogRider 35%", "Beserker 14%", "Pekka 1%"};
-        int[] probabilities = {50, 35, 14, 1}; // Probabilities for each pet
+        int[] probabilities = {50, 35, 14, 1};
+
         int rerolls = 3;
         String chosenPet = "";
 
         System.out.println("Welcome to the game!");
         System.out.println("You will roll for a random character. You have up to 3 rerolls.");
 
-        // Rerolling system
-        do {
+        // Reroll system
+        while (true) {
             chosenPet = rollPet(random, pets, probabilities);
             System.out.println("You rolled: " + chosenPet);
 
-            if (rerolls > 0) {
-                String response = "";
-
-                // Input validation loop
-                while (true) {
-                    System.out.print("Do you want to reroll? (yes/no): ");
-                    response = scanner.nextLine().toLowerCase();
-
-                    if (response.equals("yes") || response.equals("no")) {
-                        break; // Valid input
-                    }
-
-                    System.out.println("Please enter ONLY 'yes' or 'no'.");
-                }
-
-                if (response.equals("no")) {
-                    break; // User is satisfied with the pet
-                }
-
-                rerolls--; // Decrease reroll count
-            } else {
+            if (rerolls == 0) {
                 System.out.println("No rerolls left.");
                 break;
             }
-        } while (true);
 
-        System.out.println("Your final character is: " + chosenPet);
+            System.out.print("Do you want to reroll? (yes/no): ");
+            String response = scanner.nextLine().toLowerCase();
 
-        // Assign the chosen pet to the game
-        Character character;
-        switch (chosenPet) {
-            case "Dart Goblin 50%":
-                character = new DartGoblin("Sneaky Goblin");
+            while (!response.equals("yes") && !response.equals("no")) {
+                System.out.print("Please type ONLY 'yes' or 'no': ");
+                response = scanner.nextLine().toLowerCase();
+            }
+
+            if (response.equals("no")) {
                 break;
-            case "HogRider 35%":
-                character = new HogRider("Fearless Rider");
-                break;
-            case "Beserker 14%":
-                character = new Beserker("Raging Warrior");
-                break;
-            case "Pekka 1%":
-                character = new pekka("Mighty Pekka");
-                break;
-            default:
-                System.out.println("Error: Invalid pet selection.");
-                scanner.close();
-                return;
+            }
+
+            rerolls--;
+        }
+
+        // ⭐ NEW METHOD for character creation
+        Character character = createCharacter(chosenPet, scanner);
+
+        if (character == null) {
+            System.out.println("Error: Could not create character.");
+            return;
         }
 
         System.out.println("\nYou have chosen: " + character.getName());
         character.displayInfo();
 
-        // Game loop for interacting with the pet
+        // Game loop
         while (character.getHealth() > 0) {
+
             System.out.println("\nWhat should your character do?");
             System.out.println("1. Attack");
             System.out.println("2. Move");
@@ -83,33 +65,14 @@ public class main {
             System.out.print("Enter your choice: ");
 
             int choice = scanner.nextInt();
-            scanner.nextLine(); // Consume the leftover newline character
+            scanner.nextLine(); // eat newline
 
-            switch (choice) {
-                case 1:
-                    character.attack();
-                    break;
-                case 2:
-                    character.move();
-                    break; 
-                case 3:
-                    character.rest();
-                    break;
-                case 4:
-                    character.doNothing();
-                    break;
-                case 5:
-                    System.out.println("Exiting the game. Goodbye!");
-                    scanner.close();
-                    return;
-                default:
-                    System.out.println("Invalid choice. Please try again.");
-            }
+            // ⭐ NEW METHOD for handling actions
+            boolean exitGame = handleAction(choice, character, scanner);
+            if (exitGame) return;
 
-            // Display updated character info
             character.displayInfo();
 
-            // Check if the character has died
             if (character.getHealth() <= 0) {
                 System.out.println("\n" + character.getName() + " has died. Game over!");
                 break;
@@ -119,9 +82,9 @@ public class main {
         scanner.close();
     }
 
-    // Method to roll a pet based on probabilities
+    // Rolls a pet based on probability
     private static String rollPet(Random random, String[] pets, int[] probabilities) {
-        int roll = random.nextInt(100) + 1; // Random number between 1 and 100
+        int roll = random.nextInt(100) + 1;
         int cumulative = 0;
 
         for (int i = 0; i < pets.length; i++) {
@@ -130,6 +93,51 @@ public class main {
                 return pets[i];
             }
         }
-        return ""; // Fallback (shouldn't happen if probabilities are correct)
+        return "Error";
+    }
+
+    // ⭐ NEW METHOD #1: Character creation + naming
+    private static Character createCharacter(String chosenPet, Scanner scanner) {
+
+        switch (chosenPet) {
+            case "Dart Goblin 50%":
+                System.out.println("Name your Dart Goblin:");
+                return new DartGoblin(scanner.nextLine());
+
+            case "HogRider 35%":
+                System.out.println("Name your Hog Rider:");
+                return new HogRider(scanner.nextLine());
+
+            case "Beserker 14%":
+                System.out.println("Name your Beserker:");
+                return new Beserker(scanner.nextLine());
+
+            case "Pekka 1%":
+                System.out.println("Name your Pekka:");
+                return new pekka(scanner.nextLine());
+
+            default:
+                System.out.println("Invalid character type: " + chosenPet);
+                return null;
+        }
+    }
+
+    // ⭐ NEW METHOD #2: Handle action choices
+    private static boolean handleAction(int choice, Character character, Scanner scanner) {
+
+        switch (choice) {
+            case 1 -> character.attack();
+            case 2 -> character.move();
+            case 3 -> character.rest();
+            case 4 -> character.doNothing();
+            case 5 -> {
+                System.out.println("Exiting the game. Goodbye!");
+                scanner.close();
+                return true; // tells main() to stop the game
+            }
+            default -> System.out.println("Invalid choice. Try again.");
+        }
+
+        return false; // keep the game running
     }
 }

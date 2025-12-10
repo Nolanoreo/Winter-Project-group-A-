@@ -28,8 +28,8 @@ public class Beserker implements Character {
     public void attack() {
         System.out.println(name + " unleashes a furious attack, dealing " + damage + " damage!");
         delay();
-        System.out.println(name + " loses 15 health due to the reckless attack.");
-        this.health -= 15;
+        System.out.println(name + " loses 40 health due to the reckless attack.");
+        this.health -= 40;
         this.happiness += 10;
         checkHappiness();
     }
@@ -38,8 +38,8 @@ public class Beserker implements Character {
     public void move() {
         System.out.println(name + " charges forward with unstoppable rage!");
         delay();
-        System.out.println(name + " stumbles slightly, losing 20 health.");
-        this.health -= 20;
+        System.out.println(name + " stumbles slightly, losing 30 health.");
+        this.health -= 30;
         this.happiness += 15;
         checkHappiness();
     }
@@ -48,8 +48,8 @@ public class Beserker implements Character {
     public void rest() {
         System.out.println(name + " is meditating to regain health.");
         delay();
-        System.out.println(name + " regains 25 health.");
-        this.health += 25;
+        System.out.println(name + " regains 35 health.");
+        this.health += 35;
         checkHappiness();
     }
 

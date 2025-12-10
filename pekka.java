@@ -28,8 +28,8 @@ public class pekka implements Character {
     public void attack() {
         System.out.println(name + " swings its massive sword, dealing " + damage + " damage!");
         delay();
-        System.out.println(name + " loses 20 health due to the heavy attack.");
-        this.health -= 20;
+        System.out.println(name + " loses 50 health due to the heavy attack.");
+        this.health -= 50;
         this.happiness += 10;
         checkHappiness();
     }
@@ -38,8 +38,8 @@ public class pekka implements Character {
     public void move() {
         System.out.println(name + " stomps forward with heavy steps!");
         delay();
-        System.out.println(name + " loses 15 health due to the strain.");
-        this.health -= 15;
+        System.out.println(name + " loses 35 health due to the strain.");
+        this.health -= 35;
         this.happiness += 5;
         checkHappiness();
     }
@@ -48,8 +48,8 @@ public class pekka implements Character {
     public void rest() {
         System.out.println(name + " powers down to regain energy.");
         delay();
-        System.out.println(name + " regains 30 health.");
-        this.health += 30;
+        System.out.println(name + " regains 50 health.");
+        this.health += 50;
         checkHappiness();
     }
 

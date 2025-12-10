@@ -4,65 +4,65 @@ import java.util.Scanner;
 public class ClashRoyalePets {
 
     public static void main(String[] args) {
+
         Scanner scanner = new Scanner(System.in);
         Random random = new Random();
 
-        String[] pets = {"Dart Goblin 50% ", "Hog Rider 35% ", "Beserker 14%", "Evo P.E.K.K.A 1%"};
-        int[] probabilities = {50, 35, 14, 1};
+        // Pets and their chances
+        String[] pets = {"Dart Goblin 50%", "Hog Rider 35%", "Beserker 14%", "Evo P.E.K.K.A 1%"};
+        int[] chances = {50, 35, 14, 1};
 
         int rerolls = 3;
-        String pet = "";
+        String pet;
 
         System.out.println("Welcome to Clash Royale Pets!");
-        System.out.println("You will roll for a random pet. You have up to 3 rerolls.");
+        System.out.println("Roll a random pet. You have 3 rerolls.");
 
-        do {
-            pet = rollPet(random, pets, probabilities);
+        // --- REROLL LOOP ---
+        while (true) {
+
+            pet = getRandomPet(random, pets, chances);
             System.out.println("You rolled: " + pet);
 
-            if (rerolls > 0) {
-
-                String response = "";
-                
-                // --- INPUT VALIDATION LOOP ---
-                while (true) {
-                    System.out.print("Do you want to reroll? (yes/no): ");
-                    response = scanner.nextLine().toLowerCase();
-
-                    if (response.equals("yes") || response.equals("no")) {
-                        break; // input is valid
-                    }
-
-                    System.out.println("Please enter ONLY 'yes' or 'no'.");
-                }
-                // --------------------------------
-
-                if (response.equals("no")) {
-                    break;
-                }
-
-                rerolls--;
-
-            } else {
+            if (rerolls == 0) {
                 System.out.println("No rerolls left.");
                 break;
             }
 
-        } while (true);
+            // Ask user if they want to reroll
+            System.out.print("Reroll? (yes/no): ");
+            String choice = scanner.nextLine().toLowerCase();
+
+            while (!choice.equals("yes") && !choice.equals("no")) {
+                System.out.print("Please type yes or no: ");
+                choice = scanner.nextLine().toLowerCase();
+            }
+
+            if (choice.equals("no")) {
+                break;   // They accept the pet
+            }
+
+            rerolls--;   // Use a reroll
+        }
 
         System.out.println("Your final pet is: " + pet);
+        scanner.close();
     }
 
-    private static String rollPet(Random random, String[] pets, int[] probabilities) {
-        int roll = random.nextInt(100) + 1;
-        int cumulative = 0;
+
+    // --- RANDOM PET METHOD ---
+    private static String getRandomPet(Random random, String[] pets, int[] chances) {
+
+        int roll = random.nextInt(100) + 1;   // 1–100
+        int sum = 0;
 
         for (int i = 0; i < pets.length; i++) {
-            cumulative += probabilities[i];
-            if (roll <= cumulative) {
+            sum += chances[i];
+            if (roll <= sum) {
                 return pets[i];
             }
         }
-        return "";
+
+        return "Error"; // Should never happen
     }
 }
