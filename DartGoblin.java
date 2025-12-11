@@ -30,7 +30,7 @@ public class DartGoblin implements Character {
         System.out.println(name + " blows a dart causing " + damage + " damage to the target dummy!");
         System.out.println("the attack took some energy...");
         delay();
-        this.health -= 15;
+        this.health -= 20;
         this.happiness += 5;
         checkHappiness();
     }
@@ -40,7 +40,7 @@ public class DartGoblin implements Character {
         System.out.println(name + " is running around swiftly!");
         System.out.println("the dart goblin triped on a pebble and hurt himself...");
         delay();
-        this.health -= 10;
+        this.health -= 15;
         this.happiness += 10;
         checkHappiness();
     }

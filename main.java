@@ -1,13 +1,28 @@
 import java.util.Random;
 import java.util.Scanner;
 
+/**
+ * The main entry point for the Clash Royale–style character game.
+ * <p>
+ * Players roll for a random character based on weighted probabilities.
+ * They may reroll up to three times, then name their character and
+ * control it through actions such as attacking, moving, resting, or doing nothing.
+ * The game ends when the character dies or the player exits.
+ */
 public class main {
 
+    /**
+     * Launches the program, handles the reroll system, character creation,
+     * and main gameplay loop.
+     *
+     * @param args command-line arguments (unused)
+     */
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
         Random random = new Random();
 
+        // Pet names and their probabilities
         String[] pets = {"Dart Goblin 50%", "HogRider 35%", "Beserker 14%", "Pekka 1%"};
         int[] probabilities = {50, 35, 14, 1};
 
@@ -42,7 +57,7 @@ public class main {
             rerolls--;
         }
 
-        // ⭐ NEW METHOD for character creation
+        // Create the chosen character
         Character character = createCharacter(chosenPet, scanner);
 
         if (character == null) {
@@ -65,9 +80,9 @@ public class main {
             System.out.print("Enter your choice: ");
 
             int choice = scanner.nextInt();
-            scanner.nextLine(); // eat newline
+            scanner.nextLine(); // consume newline
 
-            // ⭐ NEW METHOD for handling actions
+            // Perform the chosen action
             boolean exitGame = handleAction(choice, character, scanner);
             if (exitGame) return;
 
@@ -82,7 +97,14 @@ public class main {
         scanner.close();
     }
 
-    // Rolls a pet based on probability
+    /**
+     * Rolls a random pet based on weighted probability.
+     *
+     * @param random        a {@link Random} object for random number generation
+     * @param pets          an array of pet names
+     * @param probabilities an array of corresponding probability weights
+     * @return the name of the randomly selected pet
+     */
     private static String rollPet(Random random, String[] pets, int[] probabilities) {
         int roll = random.nextInt(100) + 1;
         int cumulative = 0;
@@ -96,7 +118,14 @@ public class main {
         return "Error";
     }
 
-    // ⭐ NEW METHOD #1: Character creation + naming
+    /**
+     * Creates a character object based on the chosen pet string,
+     * while also asking the user to name the character.
+     *
+     * @param chosenPet the pet name rolled by the player
+     * @param scanner   a scanner for reading user input
+     * @return the created {@link Character} object, or null if invalid
+     */
     private static Character createCharacter(String chosenPet, Scanner scanner) {
 
         switch (chosenPet) {
@@ -122,7 +151,14 @@ public class main {
         }
     }
 
-    // ⭐ NEW METHOD #2: Handle action choices
+    /**
+     * Handles user actions inside the gameplay loop.
+     *
+     * @param choice    the selected action (1–5)
+     * @param character the player's current character
+     * @param scanner   a scanner for user input
+     * @return true if the player chooses to exit the game, otherwise false
+     */
     private static boolean handleAction(int choice, Character character, Scanner scanner) {
 
         switch (choice) {
@@ -133,11 +169,11 @@ public class main {
             case 5 -> {
                 System.out.println("Exiting the game. Goodbye!");
                 scanner.close();
-                return true; // tells main() to stop the game
+                return true; // stop the game
             }
             default -> System.out.println("Invalid choice. Try again.");
         }
 
-        return false; // keep the game running
+        return false; // continue game
     }
 }
