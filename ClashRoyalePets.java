@@ -1,14 +1,26 @@
 import java.util.Random;
 import java.util.Scanner;
 
+/**
+ * A simple console-based program that simulates rolling for a random pet
+ * in a Clash Royale–themed system. Each pet has a different probability
+ * of appearing. The user may reroll up to three times before accepting
+ * a final pet.
+ */
 public class ClashRoyalePets {
 
+    /**
+     * The main entry point of the program. Allows the user to roll for a pet,
+     * optionally reroll up to three times, and displays the final result.
+     *
+     * @param args command line arguments (not used)
+     */
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
         Random random = new Random();
 
-        // Pets and their chances
+        // Pets and their associated probabilities
         String[] pets = {"Dart Goblin 50%", "Hog Rider 35%", "Beserker 14%", "Evo P.E.K.K.A 1%"};
         int[] chances = {50, 35, 14, 1};
 
@@ -39,21 +51,27 @@ public class ClashRoyalePets {
             }
 
             if (choice.equals("no")) {
-                break;   // They accept the pet
+                break;   // User accepts the pet
             }
 
-            rerolls--;   // Use a reroll
+            rerolls--;   // Use one reroll
         }
 
         System.out.println("Your final pet is: " + pet);
         scanner.close();
     }
 
-
-    // --- RANDOM PET METHOD ---
+    /**
+     * Selects a random pet based on weighted probabilities.
+     *
+     * @param random  a {@link Random} instance used for generating random numbers
+     * @param pets    an array of pet names
+     * @param chances an array of corresponding percentage chances for each pet
+     * @return a randomly selected pet from the given list based on weights
+     */
     private static String getRandomPet(Random random, String[] pets, int[] chances) {
 
-        int roll = random.nextInt(100) + 1;   // 1–100
+        int roll = random.nextInt(100) + 1;   // Random number from 1 to 100
         int sum = 0;
 
         for (int i = 0; i < pets.length; i++) {
@@ -63,6 +81,6 @@ public class ClashRoyalePets {
             }
         }
 
-        return "Error"; // Should never happen
+        return "Error"; // Safety fallback (should never occur)
     }
 }
