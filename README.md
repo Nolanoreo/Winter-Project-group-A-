@@ -1,14 +1,13 @@
 # Winter-Project-group-A-
-A virtual pet in the theme of the clash royale game 
-A clash royale pet game teary eyes emoji
-📌 1. Project Title
-Give your project a short, creative name.
- Example: Build-a-World: Virtual Life Simulator
+
+
+1. Project Title
+Clash-Pets
 
 📝 2. Project Description
 Write a few sentences describing what your program does.
  Include:
-The goal of the program
+A virtual pet in the theme of the clash royale game in which you can make your pet sleep, attack, run, and do nothing. These attributes will be able to let you bond with your pet, just like a tamagotchi! What makes our program unique is because we offer a randomized pet experience in which if they dont like thier pet they can reroll for a chance at a rarer or better pet! These pets include the Dart Goblin :50% the Hog rider 
 
 
 What users can expect when they run it
