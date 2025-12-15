@@ -1,74 +1,96 @@
-# Winter-Project-group-A-
+# Clash-Pets 
+
+## Project Overview
+
+**Clash-Pets** is a Java-based virtual pet game inspired by characters from *Clash Royale*. In this program, users receive a randomly selected pet and can interact with it through different actions such as attacking, sleeping, running, or doing nothing. Each pet has unique traits and rarity levels, making every playthrough slightly different.
+
+This project was created as a **group programming assignment** to practice object-oriented programming concepts in Java, including classes, inheritance, methods, and constructors.
+
+---
+
+## Features
+
+*  **Random Pet Selection** based on rarity
+*  **Object-Oriented Design** using parent and child classes
+* **Interactive Gameplay** with user choices
+* Multiple unique characters inspired by *Clash Royale*
+
+---
+
+## Pet Rarities
+
+Each pet has a different chance of being selected:
+
+* **Dart Goblin** – 50%
+* **Hog Rider** – 35%
+* **Berserker** – 14%
+* **Pekka** – 1%
+
+---
+
+## Project Structure
 
 
-1. Project Title
-Clash-Pets
+Winter-Project-group-A-
+│
+├── main.java               # Runs the program and handles user interaction
+├── Character.java          # Parent class for all pets
+├── ClashRoyalePets.java    # Handles pet selection and game logic
+│
+├── DartGoblin.java         # Dart Goblin pet class
+├── HogRider.java           # Hog Rider pet class
+├── Berserker.java          # Berserker pet class
+├── Pekka.java              # Pekka pet class
+│
+└── README.md               # Project documentation
+```
 
-📝 2. Project Description
-Write a few sentences describing what your program does.
- Include:
-A virtual pet in the theme of the clash royale game in which you can make your pet sleep, attack, run, and do nothing. These attributes will be able to let you bond with your pet, just like a tamagotchi! What makes our program unique is because we offer a randomized pet experience in which if they dont like thier pet they can reroll for a chance at a rarer or better pet! These pets include the "Dart Goblin 50%", "HogRider 35%", "Beserker 14%", and "Pekka 1%".
+---
 
+## How It Works
 
-What users can expect when they run it
+1. The program starts in `main.java`.
+2. A random number generator selects a pet based on rarity.
+3. The selected pet is created using its class.
+4. The user is prompted to choose actions for the pet.
+5. Each action triggers different behaviors defined in the pet classes.
 
+---
 
-What makes your program unique
+## How to Run the Program
 
+1. Make sure you have **Java JDK** installed.
+2. Clone or download the repository.
+3. Open the project in an IDE (such as VS Code or IntelliJ).
+4. Compile all `.java` files.
+5. Run `main.java`.
 
+---
 
-🎮 3. Features
-List the key features your program includes.
-Use bullet points!
- Examples:
-Multiple character types with different behaviors
-2D map grid representing a dynamic world
-Inventory system using arrays or ArrayLists
-Inheritance used for shared behavior across classes
+## Learning Objectives
 
+* Practice **inheritance and polymorphism**
+* Understand **class relationships**
+* Apply **randomization** in programs
+* Work collaboratively using **GitHub**
 
+---
 
-🧱 4. How the Code Works
-Explain the structure of your program:
-What are the main classes?
+## Contributors
 
-
-How do they interact?
-
-
-How is data stored and used (e.g., arrays, ArrayLists)?
-
-
-How does an interface improve your design?
-
-
-You should include your UML diagram (embedded) or link to it here!
-
-▶️ 5. How to Run the Program
-Step-by-step instructions:
-What files to compile
-
-
-How to start the program
-
-
-Any sample inputs
-
+* Nolan R
+* Aiden N
+* Matthew V
+* Mateo M
 
 
-📈 6. Development Process (Optional but Recommended)
-Talk about your use of Agile/Scrum:
-What was your sprint goal?
+---
 
+## Future Improvements
 
-What challenges did your team overcome?
+* Add more characters and actions
+* Improve user interface
 
+---
 
-What would you improve in the future?
-
-
-
-🧠 7. Author Info 
-Include your name and a short line about what you learned from this project.
-If working in a team project, include each team members’ name and their team role. 
-https://drive.google.com/file/d/18-JBSaanW3MZyJ1g5wuSliI9PttRXkVl/view?usp=drive_link 
+**Thank you for checking out Clash-Pets!** 🎮
