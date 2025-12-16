@@ -17,6 +17,11 @@ This project was created as a **group programming assignment** to practice objec
 
 ---
 
+## Class Diagram
+https://drive.google.com/file/d/18-JBSaanW3MZyJ1g5wuSliI9PttRXkVl/view?usp=sharing 
+
+---
+
 ## Pet Rarities
 
 Each pet has a different chance of being selected:
